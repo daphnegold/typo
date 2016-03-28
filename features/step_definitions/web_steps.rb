@@ -174,6 +174,11 @@ Then /^the "([^"]*)" field(?: within (.*))? should contain "([^"]*)"$/ do |field
   end
 end
 
+Then /^the "([^"]*)" field should( not)? be empty$/ do |field, negate|
+  expectation = negate ? :should_not : :should
+  field_labeled(field).value.send(expectation, be_blank)
+end
+
 Then /^the "([^"]*)" field(?: within (.*))? should not contain "([^"]*)"$/ do |field, parent, value|
   with_scope(parent) do
     field = find_field(field)
