@@ -11,5 +11,4 @@ Feature: Write Articles
     Given I am on the admin content page
     When I follow "Categories"
     Then I should be on the admin categories page
-    And I should see "Cancel"
-    And I should see "Save"
+    And I should see "Your category slug. Leave empty if you don't know what to put here"
