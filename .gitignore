@@ -1,6 +1,8 @@
 config/mail.yml
 *.log
 *~
+db/*.sqlite*
+db/schema.rb
 db/db_development
 db/db_test
 .*.swp
