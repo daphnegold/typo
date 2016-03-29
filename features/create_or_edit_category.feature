@@ -6,6 +6,7 @@ Feature: Write Articles
   Background:
     Given the blog is set up
     And I am logged into the admin panel
+    And there is a "Gummy Bears" category with the keywords "gummy bears squish"
 
   Scenario: Visit the category page
     Given I am on the admin content page
@@ -31,3 +32,14 @@ Feature: Write Articles
       | Description    |            |
     And I press "Save"
     Then I should be on the admin categories page
+    And I should see "Category was successfully saved."
+    And I should not see "Category could not be saved."
+
+  Scenario: Edit a category
+    Given I am on the admin categories page
+    When I follow "Edit"
+    Then I should be on the admin categories edit page
+    And the "category_name" field should contain "Gummy Bears"
+    And the "category_keywords" field should contain "gummy bears squish"
+    And the "category_permalink" field should contain "gummy-bears"
+    And the "category_description" field should be empty
