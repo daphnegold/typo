@@ -43,3 +43,16 @@ Feature: Write Articles
     And the "category_keywords" field should contain "gummy bears squish"
     And the "category_permalink" field should contain "gummy-bears"
     And the "category_description" field should be empty
+    When I fill in "category_name" with "Applesauce is da Bomb"
+    And I press "Save"
+    Then I should be on the admin categories page
+    And I should see "Applesauce is da Bomb"
+
+  Scenario: Cancel editing a category
+    Given I am on the admin categories page
+    When I follow "Edit"
+    Then I should be on the admin categories edit page
+    And the "category_name" field should contain "Gummy Bears"
+    When I follow "Cancel"
+    Then I should be on the admin categories page
+    And the "category_name" field should be empty
