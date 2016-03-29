@@ -12,7 +12,15 @@ class Admin::ContentController < Admin::BaseController
   end
 
   def merge_articles
-    raise
+    @article = Article.find_by_id(params[:id])
+    second_article = Article.find_by_id(params[:merge])
+
+    if @article && second_article
+      if current_user.admin? && @article.id != second_article.id
+      end
+    end
+
+    new_or_edit
   end
 
   def index

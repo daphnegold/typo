@@ -5,8 +5,10 @@
 
 <% end %>
 
-<%= form_tag(merge_articles_path, method: "put") do %>
-  <h3><%= _("Merge Articles") %></h3>
-    <%= number_field_tag 'merge', nil, min: 1, placeholder: 'Article ID', required: true %>
-    <%= submit_tag "Merge", class: 'btn btn-default'%>
+<% if @article.id && current_user.admin?%>
+  <%= form_tag(merge_articles_path, method: "put") do %>
+    <h3><%= _("Merge Articles") %></h3>
+      <%= number_field_tag 'merge', nil, min: 1, placeholder: 'Article ID', required: true %>
+      <%= submit_tag "Merge", class: 'btn btn-default'%>
+  <% end %>
 <% end %>
