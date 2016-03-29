@@ -26,26 +26,24 @@ class Admin::CategoriesController < Admin::BaseController
   def new_or_edit
     @categories = Category.find(:all)
     @category = Category.find_by_id(params[:id]) || Category.new
-    if @category
-      @category.attributes = params[:category]
-      if request.post?
-        respond_to do |format|
-          format.html { save_category }
-          format.js do
-            @category.save
-            @article = Article.new
-            @article.categories << @category
-            return render(:partial => 'admin/content/categories')
-          end
+    @category.attributes = params[:category]
+    if request.post?
+      respond_to do |format|
+        format.html { save_category }
+        format.js do
+          @category.save
+          @article = Article.new
+          @article.categories << @category
+          return render(:partial => 'admin/content/categories')
         end
-        return
       end
+      return
     end
     render 'new'
   end
 
   def save_category
-    if @category.save!
+    if @category.save
       flash[:notice] = _('Category was successfully saved.')
     else
       flash[:error] = _('Category could not be saved.')
