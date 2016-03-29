@@ -53,7 +53,7 @@ Rails.application.routes.draw do
   # TrackbacksController
   resources :trackbacks
   # I thinks it's useless. More investigating
-  post "trackbacks/:id/:day/:month/:year", :to => 'trackbacks#create', :format => false
+  put "trackbacks/:id/:day/:month/:year", :to => 'trackbacks#create', :format => false
 
   # ArticlesController
   match '/live_search/', :to => 'articles#live_search', :as => :live_search_articles, :format => false
@@ -111,6 +111,8 @@ Rails.application.routes.draw do
     match "/admin/#{i}", :to => "admin/#{i}#index", :format => false
     match "/admin/#{i}(/:action(/:id))", :to => "admin/#{i}", :action => nil, :id => nil, :format => false
   end
+
+  put '/admin/merge/:id', :to => 'admin/content#merge_articles', :as => 'merge_articles'
 
   # default
   root :to  => 'articles#index', :format => false
