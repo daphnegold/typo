@@ -17,10 +17,6 @@ describe Admin::CategoriesController do
   end
 
   describe "test_new_or_edit" do
-    # before(:each) do
-    #   get :edit, :id => Factory(:category).id
-    # end
-
     it 'should render template new -- blank' do
       get :edit
       assert_template 'new'
