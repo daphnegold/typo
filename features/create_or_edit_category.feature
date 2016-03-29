@@ -21,3 +21,13 @@ Feature: Write Articles
     And I should see "Your category slug. Leave empty if you don't know what to put here"
     And I should see "Description"
     And the "category_description" field should be empty
+
+  Scenario: Save a new category
+    Given I am on the admin categories page
+    When I fill in the following:
+      | Name           | Poodles    |
+      | Keywords       | dogs       |
+      | Permalink      |            |
+      | Description    |            |
+    And I press "Save"
+    Then I should be on the admin categories page
