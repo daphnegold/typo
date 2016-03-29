@@ -41,6 +41,13 @@ Given /^the blog is set up$/ do
                 :profile_id => 1,
                 :name => 'admin',
                 :state => 'active'})
+
+  User.create!({:login => 'darkwingdaphne',
+                :password => 'testing',
+                :email => 'testing@testing.com',
+                :profile_id => 1,
+                :name => 'darkwingdaphne',
+                :state => 'active'})
 end
 
 And /^I am logged into the admin panel$/ do
@@ -54,6 +61,19 @@ And /^I am logged into the admin panel$/ do
     assert page.has_content?('Login successful')
   end
 end
+
+And /^I am logged into the admin panel as a blog publisher$/ do
+  visit '/accounts/login'
+  fill_in 'user_login', :with => 'darkwingdaphne'
+  fill_in 'user_password', :with => 'testing'
+  click_button 'Login'
+  if page.respond_to? :should
+    page.should have_content('Login successful')
+  else
+    assert page.has_content?('Login successful')
+  end
+end
+
 
 Given /^there is a (.+) category with the keywords (.+)$/ do |name, keywords|
   Category.create!({name: name, keywords: keywords})
