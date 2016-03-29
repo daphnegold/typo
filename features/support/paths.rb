@@ -21,6 +21,8 @@ module NavigationHelpers
       '/admin/categories/new'
     when /^the admin categories edit page$/
       "/admin/categories/edit/#{Category.first.id}"
+    when /^the admin content edit page$/
+      "/admin/content/edit/#{Article.first.id}"
 
     # Add more mappings here.
     # Here is an example that pulls values out of the Regexp:

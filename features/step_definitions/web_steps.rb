@@ -59,6 +59,11 @@ Given /^there is a (.+) category with the keywords (.+)$/ do |name, keywords|
   Category.create!({name: name, keywords: keywords})
 end
 
+Given /^there is a (.+) article with the body (.+)$/ do |title, body|
+  Article.create!({title: title, body: body})
+end
+
+
 # Single-line step scoper
 When /^(.*) within (.*[^:])$/ do |step, parent|
   with_scope(parent) { When step }
